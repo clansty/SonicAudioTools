@@ -116,9 +116,9 @@ namespace SonicAudioLib.CriMw
 
             switch (header.EncodingType)
             {
-                case CriTableHeader.EncodingTypeShiftJis:
-                    encoding = Encoding.GetEncoding("shift-jis");
-                    break;
+                // case CriTableHeader.EncodingTypeShiftJis:
+                //     encoding = Encoding.GetEncoding("shift-jis");
+                //     break;
 
                 case CriTableHeader.EncodingTypeUtf8:
                     encoding = Encoding.UTF8;
@@ -255,7 +255,7 @@ namespace SonicAudioLib.CriMw
         {
             return fields.Exists(field => field.Name == fieldName);
         }
-        
+
         private void GoToValue(int fieldIndex)
         {
             source.Seek(headerPosition + header.RowsPosition + (header.RowLength * rowIndex) + fields[fieldIndex].Offset, SeekOrigin.Begin);
@@ -530,7 +530,7 @@ namespace SonicAudioLib.CriMw
         {
             return GetPosition(GetFieldIndex(fieldName));
         }
-        
+
         public bool GetBoolean(int fieldIndex)
         {
             return (byte)GetValue(fieldIndex) > 0;
@@ -660,6 +660,6 @@ namespace SonicAudioLib.CriMw
             this.leaveOpen = leaveOpen;
 
             ReadTable();
-        }   
+        }
     }
 }

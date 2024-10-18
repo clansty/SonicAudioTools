@@ -105,12 +105,7 @@ namespace SonicAudioLib.CriMw
 
             header.Length = (uint)destination.Position - headerPosition;
 
-            if (settings.EncodingType == Encoding.GetEncoding("shift-jis"))
-            {
-                header.EncodingType = CriTableHeader.EncodingTypeShiftJis;
-            }
-
-            else if (settings.EncodingType == Encoding.UTF8)
+            if (settings.EncodingType == Encoding.UTF8)
             {
                 header.EncodingType = CriTableHeader.EncodingTypeUtf8;
             }
@@ -161,7 +156,7 @@ namespace SonicAudioLib.CriMw
             {
                 fieldFlag |= CriFieldFlag.Name;
             }
-            
+
             if (defaultValue != null)
             {
                 fieldFlag |= CriFieldFlag.DefaultValue;
@@ -467,7 +462,7 @@ namespace SonicAudioLib.CriMw
         private uint align = 1;
         private bool putBlankString = true;
         private bool leaveOpen = false;
-        private Encoding encodingType = Encoding.GetEncoding("shift-jis");
+        private Encoding encodingType = Encoding.UTF8;
         private bool removeDuplicateStrings = true;
         private bool enableMask = false;
 
@@ -524,7 +519,7 @@ namespace SonicAudioLib.CriMw
 
             set
             {
-                if (value != Encoding.UTF8 || value != Encoding.GetEncoding("shift-jis"))
+                if (value != Encoding.UTF8)
                 {
                     return;
                 }
